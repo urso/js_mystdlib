@@ -1,2 +1,13 @@
 
+js_mystdlib
+===========
+
+just some additional javascript functions and AOP support i like to use in some projects.
+
+The sources contains valid 'jsdoc toolkit' ( http://code.google.com/p/jsdoc-toolkit ) 
+markup. Given that you've setup the jsdoc its 'jsrun.sh' script you can create
+the API documentation by running
+
+    $ ./mkdoc.sh
+
 
