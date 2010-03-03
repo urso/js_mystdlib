@@ -290,6 +290,69 @@ Array.prototype.foldr = function (fn, init) {
     return val;
 };
 
+if(undefined === Array.prototype.indexOf && undefined === Array.indexOf) {
+
+    /**
+     * indexOf finds the index of an element in the Array or -1 if element was not found.
+     * The search element is compared using ===.
+     *
+     * @param x element to find index for
+     * @param [j] optional starting parameter
+     *
+     * @return index of element or -1 of element is not Array
+     */
+    Array.prototype.indexOf = function (x, j) {
+        var i = arguments.length > 1 ? j : 0;
+        for (; i < this.length; i++) {
+            if (x === this[i]) {
+                return i;
+            }
+        }
+        return -1;
+    }
+}
+
+/**
+ * creates new Array of intersection of the current and the given array.
+ * The elements in both Arrays are compared using the strict equality comparator ===.
+ *
+ * @param {Array} arr Array to compute intersection with current array with.
+ *
+ * @return new Array with all elements present in this and given Array.
+ */
+Array.prototype.intersection = function (arr) {
+    if (arr === this) {
+        return $A(this);
+    }
+
+    var i, tmp = [], 
+    for (i = 0; i < this.length; i++) {
+        if (0 <= arr.indexOf(this[i])) {
+            tmp.push(this[i]);
+        }
+    }
+
+    return this;
+};
+
+Array.prototype.union = function (arr) {
+    var i, tmp = new Array(this.length);
+
+    // copy this into tmp
+    for (i = 0; i < this.length; i++) {
+        tmp[i] = this[i];
+    }
+
+    // copy elements of are not found in this to tmp
+    for (i = 0; i < arr.length; i++) {
+        if (-1 === this.indexOf(arr[i])) {
+            tmp.push(arr[i]);
+        }
+    }
+
+    return tmp;
+}
+
 /**
  * $field returns a value from key value path of a given object.
  * <br/><br/>
