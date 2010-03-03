@@ -325,14 +325,15 @@ Array.prototype.intersection = function (arr) {
         return $A(this);
     }
 
-    var i, tmp = [], 
+    var i, tmp = [];
+
     for (i = 0; i < this.length; i++) {
         if (0 <= arr.indexOf(this[i])) {
             tmp.push(this[i]);
         }
     }
 
-    return this;
+    return tmp;
 };
 
 Array.prototype.union = function (arr) {
